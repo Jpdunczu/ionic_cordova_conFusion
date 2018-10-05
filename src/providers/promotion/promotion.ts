@@ -20,7 +20,7 @@ export class PromotionProvider {
 
   constructor(public http: Http,
     private processHttpmsgService: ProcessHttpmsgProvider) {
-    console.log('Hello LeaderProvider Provider');
+    console.log('Hello PromotionProvider Provider');
   }
 
   getPromotions(): Observable<Promotion[]> {

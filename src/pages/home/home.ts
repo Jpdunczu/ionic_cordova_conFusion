@@ -32,18 +32,15 @@ export class HomePage implements OnInit {
     //dish
     this.dishservice.getFeaturedDish()
       .subscribe(dish => this.dish = dish,
-        errmess => this.dishErrMsg = <any>errmess.message
-      );
+        errmess => this.dishErrMsg = <any>errmess);
     // promo
     this.promotionservice.getFeaturedPromotion()
       .subscribe(promotion => this.promotion = promotion,
-        errmess => this.promoErrMsg = <any>errmess.message
-      );
+        errmess => this.promoErrMsg = <any>errmess);
     // leader
     this.leaderservice.getFeaturedLeader()
       .subscribe(leader => this.leader = leader,
-        errmess => this.leaderErrMsg = <any>errmess.message
-      );
+        errmess => this.leaderErrMsg = <any>errmess);
   }
 
 }
