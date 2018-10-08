@@ -18,13 +18,15 @@
 
 <ion-content class="card-background-image">
   <div *ngIf="dishes">
-    <ion-card *ngFor="let dish of dishes" (click)="dishSelected($event, dish)">
+    <ion-card *ngFor="let dish of dishes" 
+      (click)="dishSelected($event, dish)"
+      (pan)="addToFavorites(dish)">
       <img src="{{BaseURL + dish.image}}" />
       <div class="card-title">{{ dish.name }}</div>
       <div class="card-subtitle">{{ dish.description }}</div>
     </ion-card>
   </div>
-  <div [hidden]="dish || errMsg">
+  <div [hidden]="dishes || errMsg">
     <ion-spinner></ion-spinner>
     <h4>Loading . . . Please Wait</h4>
   </div>
