@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ActionSheetController, ModalController } from 'ionic-angular';
 import { Dish } from '../../shared/dish';
 import { Comment } from '../../shared/comment';
 import { FavoriteProvider } from '../../providers/favorite/favorite';
+import { CommentPage } from '../comment/comment';
 
 /**
  * Generated class for the DishdetailPage page.
@@ -19,6 +20,7 @@ import { FavoriteProvider } from '../../providers/favorite/favorite';
 export class DishdetailPage {
 
   dish: Dish;
+  comment: Comment;
   errMsg: string;
   avgstars: string;
   numcomments: number;
@@ -27,6 +29,8 @@ export class DishdetailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     @Inject('BaseURL') private BaseURL,
     private toastCtrl: ToastController,
+    private modalCtrl: ModalController,
+    private actionCtrl: ActionSheetController,
     private favoriteservice: FavoriteProvider ) {
       this.dish = navParams.get('dish');
       this.favorite = this.favoriteservice.isFavorite(this.dish.id);
@@ -35,6 +39,37 @@ export class DishdetailPage {
       let total = 0;
       this.dish.comments.forEach(comment => total += comment.rating);
       this.avgstars = (total/this.numcomments).toFixed(2);
+  }
+
+  presentActionSheet() {
+    let actionSheet = this.actionCtrl.create({
+      title: 'Select Actions',
+      buttons: [
+        {
+          text: 'Add to Favorites',
+          handler: () => {
+            this.addToFavorites();
+          }
+        },
+        {
+          text: 'Add Comment',
+          handler: () => {
+            let commentModal = this.modalCtrl.create(CommentPage);
+            commentModal.onDidDismiss(comment => {
+              this.comment = comment;
+              this.dish.comments.push(this.comment);
+            });
+            commentModal.present();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+
+    actionSheet.present();
   }
 
   ionViewDidLoad() {
