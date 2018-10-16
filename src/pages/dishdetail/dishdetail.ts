@@ -4,6 +4,7 @@ import { Dish } from '../../shared/dish';
 import { Comment } from '../../shared/comment';
 import { FavoriteProvider } from '../../providers/favorite/favorite';
 import { CommentPage } from '../comment/comment';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 /**
  * Generated class for the DishdetailPage page.
@@ -31,6 +32,7 @@ export class DishdetailPage {
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private actionCtrl: ActionSheetController,
+    private socialSharing: SocialSharing,
     private favoriteservice: FavoriteProvider ) {
       this.dish = navParams.get('dish');
       this.favorite = this.favoriteservice.isFavorite(this.dish.id);
@@ -60,6 +62,26 @@ export class DishdetailPage {
               this.dish.comments.push(this.comment);
             });
             commentModal.present();
+          }
+        },
+        {
+          text: 'Share via Facebook',
+          handler: () => {
+            this.socialSharing.shareViaFacebook(
+              this.dish.name + ' -- ' + this.dish.description,
+              this.BaseURL + this.dish.image, '') // in case there is a specific URL to share, the 3rd parameter is used for that.
+                .then(() => console.log('Posted successfully to Facebook'))
+                .catch(() => console.log('Failed to post to Facebook'));
+          }
+        },
+        {
+          text: 'Share via Twitter',
+          handler: () => {
+            this.socialSharing.shareViaTwitter(
+              this.dish.name + ' -- ' + this.dish.description,
+              this.BaseURL + this.dish.image, '') // in case there is a specific URL to share, the 3rd parameter is used for that.
+                .then(() => console.log('Posted successfully to Twitter'))
+                .catch(() => console.log('Failed to post to Twitter'));
           }
         },
         {
