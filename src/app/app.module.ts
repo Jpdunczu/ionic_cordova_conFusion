@@ -22,11 +22,14 @@ import { DishProvider } from '../providers/dish/dish';
 import { LeaderProvider } from '../providers/leader/leader';
 import { PromotionProvider } from '../providers/promotion/promotion';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
+<<<<<<< HEAD
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Camera } from '@ionic-native/camera';
 import { Network } from '@ionic-native/network';
+=======
+>>>>>>> parent of 55bb5a5... Notifications
 
 import { baseURL } from '../shared/baseurl';
 import { FavoriteProvider } from '../providers/favorite/favorite';
@@ -69,9 +72,12 @@ import { FavoriteProvider } from '../providers/favorite/favorite';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+<<<<<<< HEAD
     LocalNotifications,
     EmailComposer,
     SocialSharing,
+=======
+>>>>>>> parent of 55bb5a5... Notifications
     DishProvider,
     LeaderProvider,
     Camera,
