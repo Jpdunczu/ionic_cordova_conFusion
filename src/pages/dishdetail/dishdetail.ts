@@ -4,7 +4,6 @@ import { Dish } from '../../shared/dish';
 import { Comment } from '../../shared/comment';
 import { FavoriteProvider } from '../../providers/favorite/favorite';
 import { CommentPage } from '../comment/comment';
-import { SocialSharing } from '@ionic-native/social-sharing';
 
 /**
  * Generated class for the DishdetailPage page.
@@ -32,7 +31,7 @@ export class DishdetailPage {
     private toastCtrl: ToastController,
     private modalCtrl: ModalController,
     private actionCtrl: ActionSheetController,
-    private socialSharing: SocialSharing,
+    //private socialSharing: SocialSharing,
     private favoriteservice: FavoriteProvider ) {
       this.dish = navParams.get('dish');
       this.favorite = this.favoriteservice.isFavorite(this.dish.id);
@@ -64,6 +63,7 @@ export class DishdetailPage {
             commentModal.present();
           }
         },
+        /*
         {
           text: 'Share via Facebook',
           handler: () => {
@@ -84,6 +84,7 @@ export class DishdetailPage {
                 .catch(() => console.log('Failed to post to Twitter'));
           }
         },
+        */
         {
           text: 'Cancel',
           role: 'cancel'
