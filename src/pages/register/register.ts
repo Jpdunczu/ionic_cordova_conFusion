@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+//import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
  * Generated class for the RegisterPage page.
@@ -22,7 +22,8 @@ export class RegisterPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private viewCtrl: ViewController, private modalCtrl: ModalController,
-    private camera: Camera, private formBuilder: FormBuilder) {
+    //private camera: Camera, 
+    private formBuilder: FormBuilder) {
 
       this.registerForm = this.formBuilder.group({
         firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -41,7 +42,7 @@ export class RegisterPage {
   dismiss() {
     this.viewCtrl.dismiss(true);
   }
-
+/*
   getPicture() {
     const options: CameraOptions = {
       quality: 100,
@@ -61,7 +62,7 @@ export class RegisterPage {
       },
       (err) => { console.log('Error obtaining picture') });
   }
-
+*/
   onSubmit() {
     console.log(this.registerForm.value);
     this.dismiss();
